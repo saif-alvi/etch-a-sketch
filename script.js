@@ -26,11 +26,14 @@ function UpdateGrid(){
     
     let input = prompt('Please enter desired pixel density (Warning: This resets grid)');
     if (input === null) return;
-    const columnsToBeRemoved = document.querySelectorAll(".tileColumn");
-    columnsToBeRemoved.forEach(column => container.removeChild(column));
+    else if (Number.isNaN(+input)) alert("Must be a number!");
 
-    if (typeof +input !== 'number')  alert("Must be a number!");
+
+    
+
     else {
+        const columnsToBeRemoved = document.querySelectorAll(".tileColumn");
+        columnsToBeRemoved.forEach(column => container.removeChild(column));
         input = +input;
         for (i=1; i<=input; i++){
             const tileColumn =document.createElement('div')
