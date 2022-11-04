@@ -9,7 +9,6 @@ body{
     justify-content: center;
     align-items: center;
     background-color: black;
-    gap: 50px;
 }
 
 .toolbar{
@@ -21,13 +20,18 @@ body{
     width: 300px;
     height: 500px;
     align-items: center;
-    gap: 40px;
+    
 }
 
 .densityButton{
     height: 50px;
     width: 150px;
     margin: 40px;
+}
+
+.infoContainer{
+    display: flex;
+    flex-direction: column;
 }
 
 #container{

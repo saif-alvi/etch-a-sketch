@@ -1,12 +1,20 @@
 const body = document.querySelector('body');
 const container = document.querySelector('#container');
+
+const infoContainer = document.createElement('div');
+    infoContainer.classList.add("infoContainer");
+    infoContainer
+
 const toolbar = document.createElement('div');
     toolbar.classList.add("toolbar");
+
 const densityButton = document.createElement('button');
 densityButton.addEventListener('click',UpdateGrid);
     densityButton.classList.add("densityButton");
     densityButton.textContent = "Set Density"
-body.insertBefore(toolbar,container);
+
+body.insertBefore(infoContainer,container);
+infoContainer.append(toolbar);
 toolbar.appendChild(densityButton);
 
 
