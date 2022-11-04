@@ -5,10 +5,24 @@ html, body{
 }
 
 body{
+    gap: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: black;
+}
+
+.infoContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title{
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    margin-bottom: 60px
 }
 
 .toolbar{
@@ -23,15 +37,11 @@ body{
     
 }
 
-.densityButton{
+.toolButton{
+    font-family: 'Courier New', Courier, monospace;
     height: 50px;
     width: 150px;
     margin: 40px;
-}
-
-.infoContainer{
-    display: flex;
-    flex-direction: column;
 }
 
 #container{

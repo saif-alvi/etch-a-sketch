@@ -3,28 +3,33 @@ const container = document.querySelector('#container');
 
 const infoContainer = document.createElement('div');
     infoContainer.classList.add("infoContainer");
-    infoContainer
-
+    
+const title = document.createElement('h1');
+    title.classList.add('title');
+    title.textContent ='SKETCH PAD';
 const toolbar = document.createElement('div');
     toolbar.classList.add("toolbar");
 
+
 const densityButton = document.createElement('button');
 densityButton.addEventListener('click',UpdateGrid);
-    densityButton.classList.add("densityButton");
-    densityButton.textContent = "Set Density"
+    densityButton.classList.add("toolButton");
+    densityButton.textContent = "Set Density";
 
 body.insertBefore(infoContainer,container);
+infoContainer.append(title);
 infoContainer.append(toolbar);
 toolbar.appendChild(densityButton);
 
 
 function UpdateGrid(){
+    
+    let input = prompt('Please enter desired pixel density (Warning: This resets grid)');
+    if (input === null) return;
     const columnsToBeRemoved = document.querySelectorAll(".tileColumn");
     columnsToBeRemoved.forEach(column => container.removeChild(column));
 
-    let input = prompt('Please enter desired pixel density (Warning: This resets grid)');
-    if (input == null) return;
-    else if (typeof +input !== 'number')  alert("Must be a number!");
+    if (typeof +input !== 'number')  alert("Must be a number!");
     else {
         input = +input;
         for (i=1; i<=input; i++){
