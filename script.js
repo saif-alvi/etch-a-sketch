@@ -28,7 +28,7 @@ const gradientButton = document.createElement('button');
 const resetButton = document.createElement('button');
     resetButton.addEventListener("click", () => {
         const tiles = document.querySelectorAll(".tileRow");
-        tiles.forEach(tile => tile.classlist.remove(".colorBlack"));
+        tiles.forEach(tile => tile.classList.remove("colorBlack"));
     })
     resetButton.classList.add("toolButton");
     resetButton.textContent = "Reset";
@@ -75,6 +75,7 @@ function UpdateGrid(){
 
     }
 }
+
 
 function tileWhiteToBlack(e){
     if (e.buttons== 1 || e.buttons == 3) this.classList.add('colorBlack');
