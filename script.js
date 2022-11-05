@@ -12,14 +12,38 @@ const toolbar = document.createElement('div');
 
 
 const densityButton = document.createElement('button');
-densityButton.addEventListener('click',UpdateGrid);
+    densityButton.addEventListener('click',UpdateGrid);
     densityButton.classList.add("toolButton");
     densityButton.textContent = "Set Density";
+
+const blackButton = document.createElement('button');   
+    blackButton.classList.add("toolButton");
+    blackButton.textContent = "Black";
+const colorButton = document.createElement('button');
+    colorButton.classList.add("toolButton");
+    colorButton.textContent = "Color";
+const gradientButton = document.createElement('button');
+    gradientButton.classList.add("toolButton");
+    gradientButton.textContent = "Gradient";
+const resetButton = document.createElement('button');
+    resetButton.addEventListener("click", () => {
+        const tiles = document.querySelectorAll(".tileRow");
+        tiles.forEach(tile => tile.classlist.remove(".colorBlack"));
+    })
+    resetButton.classList.add("toolButton");
+    resetButton.textContent = "Reset";
+
+
 
 body.insertBefore(infoContainer,container);
 infoContainer.append(title);
 infoContainer.append(toolbar);
 toolbar.appendChild(densityButton);
+toolbar.appendChild(blackButton);
+toolbar.appendChild(colorButton);
+toolbar.appendChild(gradientButton);
+toolbar.appendChild(resetButton);
+
 
 
 function UpdateGrid(){
@@ -27,10 +51,6 @@ function UpdateGrid(){
     let input = prompt('Please enter desired pixel density (Warning: This resets grid)');
     if (input === null) return;
     else if (Number.isNaN(+input)) alert("Must be a number!");
-
-
-    
-
     else {
         const columnsToBeRemoved = document.querySelectorAll(".tileColumn");
         columnsToBeRemoved.forEach(column => container.removeChild(column));
