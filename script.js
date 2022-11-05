@@ -25,13 +25,22 @@ const colorButton = document.createElement('button');
 const gradientButton = document.createElement('button');
     gradientButton.classList.add("toolButton");
     gradientButton.textContent = "Gradient";
+
+const eraserButton = document.createElement('button');
+    eraserButton.classList.add("toolButton");
+    eraserButton.textContent = "Eraser";
+    eraserButton.addEventListener("click", () =>{
+        const tiles = document.querySelectorAll(".tileRow");
+        tiles.forEach(tile => addEraserListener(tile));
+    });
+
 const resetButton = document.createElement('button');
+    resetButton.classList.add("toolButton");
+    resetButton.textContent = "Reset";
     resetButton.addEventListener("click", () => {
         const tiles = document.querySelectorAll(".tileRow");
         tiles.forEach(tile => tile.classList.remove("colorBlack"));
     })
-    resetButton.classList.add("toolButton");
-    resetButton.textContent = "Reset";
 
 
 
@@ -42,6 +51,7 @@ toolbar.appendChild(densityButton);
 toolbar.appendChild(blackButton);
 toolbar.appendChild(colorButton);
 toolbar.appendChild(gradientButton);
+toolbar.appendChild(eraserButton);
 toolbar.appendChild(resetButton);
 
 
@@ -68,20 +78,57 @@ function UpdateGrid(){
                 column.appendChild(tileRow);
             }
         });
+        
     const tiles = document.querySelectorAll('.tileRow');
     tiles.forEach(tile => tile.addEventListener('mouseover', tileWhiteToBlack) );
     tiles.forEach(tile => tile.addEventListener('click', tileWhiteToBlack2) );
-    densityButton.classList.add("densityButton");
-
+    return tiles;
     }
 }
 
+function removeListeners(e) {
+    e.removeEventListener('mouseover',tileWhiteToBlack);
+    e.removeEventListener('click',tileWhiteToBlack2);
+}
+
+function addBlackListener(e){
+    removeListeners(e);
+    e.addEventListener('mouseover', tileWhiteToBlack)
+    e.addEventListener('click',tileWhiteToBlack2);
+}
+
+function addColorListener(e){
+    removeListeners(e);
+    e.addEventListener('mouseover', tileWhiteToBlack)
+    e.addEventListener('click',tileWhiteToBlack2);
+}
+
+function addGradientListener(e){
+    removeListeners(e);
+    e.addEventListener('mouseover', tileWhiteToBlack)
+    e.addEventListener('click',tileWhiteToBlack2);
+}
+
+function addEraserListener(e){
+    removeListeners(e);
+    e.addEventListener('mouseover', tileBlackToWhite);
+    e.addEventListener('click',tileBlackToWhite2);
+}
+
+
+
+function tileBlackToWhite(e){
+    if (e.buttons== 1 || e.buttons == 3) e.target.classList.remove('colorBlack');
+}
+function tileBlackToWhite2(e){
+   e.target.classList.remove('colorBlack');
+}
 
 function tileWhiteToBlack(e){
-    if (e.buttons== 1 || e.buttons == 3) this.classList.add('colorBlack');
+    if (e.buttons== 1 || e.buttons == 3) e.target.classList.add('colorBlack');
 }
 function tileWhiteToBlack2(e){
-   this.classList.add('colorBlack');
+   e.target.classList.add('colorBlack');
 }
 
 
