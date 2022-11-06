@@ -6,7 +6,7 @@ const infoContainer = document.createElement('div');
     
 const title = document.createElement('h1');
     title.classList.add('title');
-    title.textContent ='SKETCH PAD';
+    title.textContent ='SKETCH-PAD';
 const toolbar = document.createElement('div');
     toolbar.classList.add("toolbar");
 
@@ -27,6 +27,11 @@ const blackButton = document.createElement('button');
 const colorButton = document.createElement('button');
     colorButton.classList.add("toolButton");
     colorButton.textContent = "Color";
+    colorButton.addEventListener("click", () =>{
+        const tiles = document.querySelectorAll(".tileRow");
+        tiles.forEach(tile => addColorListener(tile));
+    });
+
 const gradientButton = document.createElement('button');
     gradientButton.classList.add("toolButton");
     gradientButton.textContent = "Gradient";
@@ -44,7 +49,7 @@ const resetButton = document.createElement('button');
     resetButton.textContent = "Reset";
     resetButton.addEventListener("click", () => {
         const tiles = document.querySelectorAll(".tileRow");
-        tiles.forEach(tile => tile.classList.remove("colorBlack"));
+        tiles.forEach(tile => tile.style.background="white");
     })
 
 
@@ -85,55 +90,83 @@ function UpdateGrid(){
         });
         
     const tiles = document.querySelectorAll('.tileRow');
-    tiles.forEach(tile => tile.addEventListener('mouseover', tileWhiteToBlack) );
-    tiles.forEach(tile => tile.addEventListener('click', tileWhiteToBlack2) );
+    tiles.forEach(tile => tile.addEventListener('mouseover', tileBlack) );
+    tiles.forEach(tile => tile.addEventListener('click', tileBlack2) );
     return tiles;
     }
 }
 
 function removeListeners(e) {
-    e.removeEventListener('mouseover',tileWhiteToBlack);
-    e.removeEventListener('click',tileWhiteToBlack2);
+    e.removeEventListener('mouseover', tileBlack);
+    e.removeEventListener('click', tileBlack2);
+    e.removeEventListener('mouseover', tileWhite);
+    e.removeEventListener('click', tileWhite2);
+    e.removeEventListener('mouseover', tileColor);
+    e.removeEventListener('click', tileColor2);
 }
 
 function addBlackListener(e){
     removeListeners(e);
-    e.addEventListener('mouseover', tileWhiteToBlack)
-    e.addEventListener('click',tileWhiteToBlack2);
+    e.addEventListener('mouseover', tileBlack)
+    e.addEventListener('click', tileBlack2);
 }
 
 function addColorListener(e){
     removeListeners(e);
-    e.addEventListener('mouseover', tileWhiteToBlack)
-    e.addEventListener('click',tileWhiteToBlack2);
+    e.addEventListener('mouseover', tileColor)
+    e.addEventListener('click', tileColor2);
 }
 
 function addGradientListener(e){
     removeListeners(e);
-    e.addEventListener('mouseover', tileWhiteToBlack)
-    e.addEventListener('click',tileWhiteToBlack2);
+    e.addEventListener('mouseover', tileBlack)
+    e.addEventListener('click', tileBlack2);
 }
 
 function addEraserListener(e){
     removeListeners(e);
-    e.addEventListener('mouseover', tileBlackToWhite);
-    e.addEventListener('click',tileBlackToWhite2);
+    e.addEventListener('mouseover', tileWhite);
+    e.addEventListener('click', tileWhite2);
 }
 
 
 
-function tileBlackToWhite(e){
+function tileGradient(e){
     if (e.buttons== 1 || e.buttons == 3) e.target.classList.remove('colorBlack');
 }
-function tileBlackToWhite2(e){
+function tileGradient2(e){
    e.target.classList.remove('colorBlack');
 }
 
-function tileWhiteToBlack(e){
-    if (e.buttons== 1 || e.buttons == 3) e.target.classList.add('colorBlack');
+
+function tileColor(e){
+    let x = Math.floor(Math.random()*255);
+    let y = Math.floor(Math.random()*255);
+    let z = Math.floor(Math.random()*255);
+    console.log(`${x},${y},${z}`);
+    if (e.buttons== 1 || e.buttons == 3) e.target.style.background=`rgb(${x},${y},${z})`;
 }
-function tileWhiteToBlack2(e){
-   e.target.classList.add('colorBlack');
+function tileColor2(e){
+    let x = Math.floor(Math.random()*255);
+    let y = Math.floor(Math.random()*255);
+    let z = Math.floor(Math.random()*255);
+    e.target.style.background=`rgb(${x},${y},${z})`;
+}
+
+
+function tileWhite(e){
+    if (e.buttons== 1 || e.buttons == 3) e.target.style.background='white';
+}
+function tileWhite2(e){
+    e.target.style.background='white';
+}
+
+
+function tileBlack(e){
+    if (e.buttons== 1 || e.buttons == 3) e.target.style.background='black';
+}
+function tileBlack2(e){
+    e.target.style.background='black';
 }
 
 
