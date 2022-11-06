@@ -19,6 +19,11 @@ const densityButton = document.createElement('button');
 const blackButton = document.createElement('button');   
     blackButton.classList.add("toolButton");
     blackButton.textContent = "Black";
+    blackButton.addEventListener("click", () =>{
+        const tiles = document.querySelectorAll(".tileRow");
+        tiles.forEach(tile => addBlackListener(tile));
+    });
+
 const colorButton = document.createElement('button');
     colorButton.classList.add("toolButton");
     colorButton.textContent = "Color";
