@@ -35,6 +35,10 @@ const colorButton = document.createElement('button');
 const gradientButton = document.createElement('button');
     gradientButton.classList.add("toolButton");
     gradientButton.textContent = "Gradient";
+    gradientButton.addEventListener("click", () =>{
+        const tiles = document.querySelectorAll(".tileRow");
+        tiles.forEach(tile => addGradientListener(tile));
+    });
 
 const eraserButton = document.createElement('button');
     eraserButton.classList.add("toolButton");
@@ -103,6 +107,8 @@ function removeListeners(e) {
     e.removeEventListener('click', tileWhite2);
     e.removeEventListener('mouseover', tileColor);
     e.removeEventListener('click', tileColor2);
+    e.removeEventListener('mouseover', tileGradient);
+    e.removeEventListener('click', tileGradient2);
 }
 
 function addBlackListener(e){
@@ -119,8 +125,8 @@ function addColorListener(e){
 
 function addGradientListener(e){
     removeListeners(e);
-    e.addEventListener('mouseover', tileBlack)
-    e.addEventListener('click', tileBlack2);
+    e.addEventListener('mouseover', tileGradient)
+    e.addEventListener('click', tileGradient2);
 }
 
 function addEraserListener(e){
@@ -129,15 +135,67 @@ function addEraserListener(e){
     e.addEventListener('click', tileWhite2);
 }
 
-
-
 function tileGradient(e){
-    if (e.buttons== 1 || e.buttons == 3) e.target.classList.remove('colorBlack');
-}
-function tileGradient2(e){
-   e.target.classList.remove('colorBlack');
+    if (e.target.style.background!='black'){
+        if (e.buttons== 1 || e.buttons == 3){
+                    if (e.target.style.background ==''){
+                        e.target.style.background ="rgb(0,0,0,0.1)";
+                    }
+                    else{
+                        let values = e.target.style.background;
+                        values = values.slice(5,-1);
+                        values = values.split(',');
+                        if (values.length == 4){
+                            transparency = Number(values[values.length-1]);
+                            if (transparency != 0.9) {
+                                transparency += 0.1;
+                                values.pop();
+                                values.push(transparency.toString());
+                                e.target.style.background =`rgb(${values.toString()})`;
+                            }
+                            else if (transparency == 0.9){
+                                e.target.style.background="black";
+                            }
+                        }
+                        else {
+                            e.target.style.background ="rgb(0,0,0,0.1)";
+                        }
+                
+                    }
+        }
+    }
 }
 
+function tileGradient2(e){
+    if (e.target.style.background!='black'){
+            if (e.target.style.background ==''){
+                e.target.style.background ="rgb(0,0,0,0.1)";
+            }
+            else{
+                let values = e.target.style.background;
+                values = values.slice(5,-1);
+                values = values.split(',');
+                if (values.length == 4){
+                    transparency = Number(values[values.length-1]);
+                    if (transparency != 0.9) {
+                        transparency += 0.1;
+                        values.pop();
+                        values.push(transparency.toString());
+                        e.target.style.background =`rgb(${values.toString()})`;
+                        console.log(e.target.style.background)
+                        console.log(values)
+                    }
+                    else if (transparency == 0.9){
+                        e.target.style.background="black";
+                    }
+                }
+                else {
+                    e.target.style.background ="rgb(0,0,0,0.1)";
+                }
+        
+            }
+    }
+}
 
 function tileColor(e){
     let x = Math.floor(Math.random()*255);
