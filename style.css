@@ -9,8 +9,9 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background: rgba(0, 0, 0, 0.906);
 }
+
 
 .infoContainer{
     display: flex;
@@ -19,16 +20,18 @@ body{
 }
 
 .title{
-    color: white;
+    color: #fdf800;
     font-family: 'Courier New', Courier, monospace;
     font-size: 40px;
     margin-bottom: 60px
 }
 
+
+
 .toolbar{
     display: flex;
     flex-direction: column;
-    background-color: beige;
+    background: beige;
     border: 5px solid aqua;
     border-radius: 5px;
     width: 300px;
