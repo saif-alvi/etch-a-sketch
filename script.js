@@ -57,9 +57,7 @@ const resetButton = document.createElement('button');
     resetButton.addEventListener("click", () => {
         const tiles = document.querySelectorAll(".tileRow");
         tiles.forEach(tile => tile.style.background="white");
-    })
-
-
+    });
 
 body.insertBefore(infoContainer,container);
 infoContainer.append(title);
@@ -71,7 +69,7 @@ toolbar.appendChild(gradientButton);
 toolbar.appendChild(eraserButton);
 toolbar.appendChild(resetButton);
 
-
+//----------------------------------------------------------------------------------------
 
 function UpdateGrid(){
     let input = prompt('Please enter desired pixel density (Warning: This resets grid)');
@@ -94,12 +92,28 @@ function UpdateGrid(){
                 column.appendChild(tileRow);
             }
         });
-    const tiles = document.querySelectorAll('.tileRow');
-    tiles.forEach(tile => tile.addEventListener('mouseover', tileBlack) );
-    tiles.forEach(tile => tile.addEventListener('click', tileBlack2) );
-    return tiles;
+
     }
 }
+
+// On Open
+const columnsToBeRemoved = document.querySelectorAll(".tileColumn");
+        columnsToBeRemoved.forEach(column => container.removeChild(column));
+        input = 40;
+        for (i=1; i<=input; i++){
+            const tileColumn =document.createElement('div')
+            tileColumn.classList.add("tileColumn");
+            container.appendChild(tileColumn);
+            }
+        const tileColumns = document.querySelectorAll('.tileColumn');
+        tileColumns.forEach(column => {
+            for (i=1; i<=input; i++){
+                const tileRow = document.createElement('div');
+                tileRow.classList.add("tileRow");
+                column.appendChild(tileRow);
+            }
+        });
+//------------------------------------------------------------------
 
 function buttonPressHighlight(curButton){
     buttons = document.querySelectorAll('.toolButton');
@@ -141,6 +155,8 @@ function addEraserListener(e){
     e.addEventListener('mouseover', tileWhite);
     e.addEventListener('click', tileWhite2);
 }
+
+//----------------------------------------------------------------------------------------
 
 function tileGradient(e){
     if (e.target.style.background!='black'){
@@ -203,6 +219,8 @@ function tileGradient2(e){
             }
     }
 }
+
+//----------------------------------------------------------------------------------------
 
 function tileColor(e){
     let x = Math.floor(Math.random()*255);
