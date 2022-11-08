@@ -43,6 +43,7 @@ body{
     height: 50px;
     width: 150px;
     margin: 14px;
+    border-radius: 5px;
 }
 
 #container{
@@ -66,10 +67,14 @@ body{
     min-height: 1px;
 }
 
-.colorBlack{
-    background-color:black;
+.buttonBorder{
+    border: 5px solid aqua;
 }
 
 .colorRandom{
     background-color: rgba(red, green, blue, alpha);
+}
+
+.buttonHighlight{
+    border: 5px solid aqua;
 }

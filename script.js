@@ -10,7 +10,6 @@ const title = document.createElement('h1');
 const toolbar = document.createElement('div');
     toolbar.classList.add("toolbar");
 
-
 const densityButton = document.createElement('button');
     densityButton.addEventListener('click',UpdateGrid);
     densityButton.classList.add("toolButton");
@@ -20,6 +19,7 @@ const blackButton = document.createElement('button');
     blackButton.classList.add("toolButton");
     blackButton.textContent = "Black";
     blackButton.addEventListener("click", () =>{
+        buttonPressHighlight(blackButton);
         const tiles = document.querySelectorAll(".tileRow");
         tiles.forEach(tile => addBlackListener(tile));
     });
@@ -28,6 +28,7 @@ const colorButton = document.createElement('button');
     colorButton.classList.add("toolButton");
     colorButton.textContent = "Color";
     colorButton.addEventListener("click", () =>{
+        buttonPressHighlight(colorButton);
         const tiles = document.querySelectorAll(".tileRow");
         tiles.forEach(tile => addColorListener(tile));
     });
@@ -36,6 +37,7 @@ const gradientButton = document.createElement('button');
     gradientButton.classList.add("toolButton");
     gradientButton.textContent = "Gradient";
     gradientButton.addEventListener("click", () =>{
+        buttonPressHighlight(gradientButton);
         const tiles = document.querySelectorAll(".tileRow");
         tiles.forEach(tile => addGradientListener(tile));
     });
@@ -44,6 +46,7 @@ const eraserButton = document.createElement('button');
     eraserButton.classList.add("toolButton");
     eraserButton.textContent = "Eraser";
     eraserButton.addEventListener("click", () =>{
+        buttonPressHighlight(eraserButton);
         const tiles = document.querySelectorAll(".tileRow");
         tiles.forEach(tile => addEraserListener(tile));
     });
@@ -71,7 +74,6 @@ toolbar.appendChild(resetButton);
 
 
 function UpdateGrid(){
-    
     let input = prompt('Please enter desired pixel density (Warning: This resets grid)');
     if (input === null) return;
     else if (Number.isNaN(+input)) alert("Must be a number!");
@@ -92,12 +94,17 @@ function UpdateGrid(){
                 column.appendChild(tileRow);
             }
         });
-        
     const tiles = document.querySelectorAll('.tileRow');
     tiles.forEach(tile => tile.addEventListener('mouseover', tileBlack) );
     tiles.forEach(tile => tile.addEventListener('click', tileBlack2) );
     return tiles;
     }
+}
+
+function buttonPressHighlight(curButton){
+    buttons = document.querySelectorAll('.toolButton');
+    buttons.forEach(button => button.classList.remove("buttonHighlight"))
+    curButton.classList.add('buttonHighlight');
 }
 
 function removeListeners(e) {
