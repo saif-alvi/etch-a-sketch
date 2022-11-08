@@ -64,8 +64,8 @@ infoContainer.append(title);
 infoContainer.append(toolbar);
 toolbar.appendChild(densityButton);
 toolbar.appendChild(blackButton);
-toolbar.appendChild(colorButton);
 toolbar.appendChild(gradientButton);
+toolbar.appendChild(colorButton);
 toolbar.appendChild(eraserButton);
 toolbar.appendChild(resetButton);
 
