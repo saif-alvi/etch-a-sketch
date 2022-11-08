@@ -41,6 +41,7 @@ body{
 .toolButton{
     font-family: 'Courier New', Courier, monospace;
     font-size: medium;
+    font-weight: 500;
     height: 50px;
     width: 150px;
     margin: 14px;
